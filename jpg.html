@@ -1,0 +1,2291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PDF to JPG - PDFMaster</title>
+
+    <!-- Main Website CSS -->
+    <link rel="stylesheet" href="../style2.css">
+
+
+    <style>
+
+        /* =====================================================
+           PDF TO JPG TOOL
+        ===================================================== */
+
+        .merge-tool-section {
+
+            min-height: calc(100vh - 150px);
+
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #fffafa 100%
+                );
+
+        }
+
+
+        .merge-container {
+
+            width: 92%;
+
+            max-width: 900px;
+
+            margin: auto;
+
+        }
+
+
+        /* =====================================================
+           HEADING
+        ===================================================== */
+
+        .tool-heading {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .tool-badge {
+
+            display: inline-block;
+
+            padding: 7px 15px;
+
+            border-radius: 50px;
+
+            background: #fff0f0;
+
+            color: #e53935;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .tool-heading h1 {
+
+            margin: 15px 0 10px;
+
+            color: #172033;
+
+            font-size: 44px;
+
+            line-height: 1.15;
+
+        }
+
+
+        .tool-heading h1 span {
+
+            color: #e53935;
+
+        }
+
+
+        .tool-heading p {
+
+            max-width: 620px;
+
+            margin: auto;
+
+            color: #667085;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =====================================================
+           UPLOAD BOX
+        ===================================================== */
+
+        .upload-box {
+
+            padding: 55px 25px;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            border: 2px dashed #e5caca;
+
+            border-radius: 20px;
+
+            transition: 0.3s ease;
+
+        }
+
+
+        .upload-box:hover {
+
+            border-color: #e53935;
+
+            box-shadow:
+                0 15px 35px
+                rgba(229, 57, 53, 0.08);
+
+        }
+
+
+        .upload-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background: #fff0f0;
+
+            color: #e53935;
+
+            font-size: 32px;
+
+        }
+
+
+        .upload-box h2 {
+
+            margin: 20px 0 8px;
+
+            color: #172033;
+
+            font-size: 22px;
+
+        }
+
+
+        .upload-box p {
+
+            margin-bottom: 25px;
+
+            color: #667085;
+
+        }
+
+
+        .upload-box small {
+
+            display: block;
+
+            margin-top: 15px;
+
+            color: #98a2b3;
+
+        }
+
+
+        /* =====================================================
+           SELECT BUTTON
+        ===================================================== */
+
+        .select-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 13px 25px;
+
+            border-radius: 10px;
+
+            background: #e53935;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(229, 57, 53, 0.20);
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .select-btn:hover {
+
+            background: #c62828;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =====================================================
+           FILE AREA
+        ===================================================== */
+
+        .files-area {
+
+            display: none;
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid #edf0f4;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(20, 30, 50, 0.05);
+
+        }
+
+
+        .files-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .files-header h2 {
+
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 20px;
+
+        }
+
+
+        .files-header span {
+
+            color: #98a2b3;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =====================================================
+           FILE ITEM
+        ===================================================== */
+
+        .file-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+
+            background: #fafafa;
+
+            border: 1px solid #edf0f3;
+
+            border-radius: 12px;
+
+        }
+
+
+        .file-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            min-width: 0;
+
+        }
+
+
+        .pdf-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #fff0f0;
+
+            color: #e53935;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .file-info strong {
+
+            display: block;
+
+            max-width: 500px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            color: #344054;
+
+            font-size: 14px;
+
+        }
+
+
+        .file-info small {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================================
+           QUALITY OPTIONS
+        ===================================================== */
+
+        .quality-area {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: #fafafa;
+
+            border: 1px solid #edf0f3;
+
+            border-radius: 14px;
+
+        }
+
+
+        .quality-title {
+
+            margin-bottom: 14px;
+
+            color: #172033;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .quality-options {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+        }
+
+
+        .quality-option {
+
+            position: relative;
+
+        }
+
+
+        .quality-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+        }
+
+
+        .quality-option label {
+
+            display: block;
+
+            padding: 13px 10px;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            border: 1px solid #e1e5ea;
+
+            border-radius: 10px;
+
+            color: #344054;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .quality-option label small {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+        }
+
+
+        .quality-option input:checked + label {
+
+            border-color: #e53935;
+
+            background: #fff0f0;
+
+            color: #e53935;
+
+        }
+
+
+        /* =====================================================
+           JPG RESULTS
+        ===================================================== */
+
+        .results-area {
+
+            display: none;
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border: 1px solid #edf0f4;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(20, 30, 50, 0.05);
+
+        }
+
+
+        .results-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .results-header h2 {
+
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 20px;
+
+        }
+
+
+        .results-header span {
+
+            color: #98a2b3;
+
+            font-size: 13px;
+
+        }
+
+
+        .preview-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .preview-card {
+
+            overflow: hidden;
+
+            background: #fafafa;
+
+            border: 1px solid #edf0f3;
+
+            border-radius: 14px;
+
+        }
+
+
+        .preview-image {
+
+            width: 100%;
+
+            height: 260px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 10px;
+
+            background: #f4f5f7;
+
+        }
+
+
+        .preview-image img {
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+            object-fit: contain;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .preview-info {
+
+            padding: 14px;
+
+        }
+
+
+        .preview-info strong {
+
+            display: block;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            color: #344054;
+
+            font-size: 13px;
+
+        }
+
+
+        .preview-info small {
+
+            display: block;
+
+            margin-top: 5px;
+
+            color: #98a2b3;
+
+            font-size: 11px;
+
+        }
+
+
+        .download-single {
+
+            width: 100%;
+
+            margin-top: 12px;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #e53935;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .download-single:hover {
+
+            background: #c62828;
+
+        }
+
+
+        /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+        .merge-action {
+
+            margin-top: 30px;
+
+            text-align: center;
+
+        }
+
+
+        .merge-btn {
+
+            min-width: 200px;
+
+            padding: 15px 30px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #e53935;
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(229, 57, 53, 0.20);
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .merge-btn:hover:not(:disabled) {
+
+            background: #c62828;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .merge-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .download-all-btn {
+
+            min-width: 200px;
+
+            margin-left: 8px;
+
+            padding: 15px 30px;
+
+            border: 1px solid #e53935;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #e53935;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .download-all-btn:hover {
+
+            background: #fff0f0;
+
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        #statusMessage {
+
+            min-height: 22px;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        #statusMessage.success {
+
+            color: #2e7d32;
+
+        }
+
+
+        #statusMessage.error {
+
+            color: #e53935;
+
+        }
+
+
+        #statusMessage.loading {
+
+            color: #667085;
+
+        }
+
+
+        /* =====================================================
+           PROGRESS
+        ===================================================== */
+
+        .progress-area {
+
+            display: none;
+
+            margin-top: 20px;
+
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 8px;
+
+            overflow: hidden;
+
+            border-radius: 50px;
+
+            background: #edf0f3;
+
+        }
+
+
+        .progress-fill {
+
+            width: 0%;
+
+            height: 100%;
+
+            border-radius: 50px;
+
+            background: #e53935;
+
+            transition: width 0.2s ease;
+
+        }
+
+
+        .progress-text {
+
+            margin-top: 8px;
+
+            color: #98a2b3;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .merge-tool-section {
+
+                padding: 55px 0;
+
+            }
+
+
+            .merge-container {
+
+                width: 90%;
+
+            }
+
+
+            .tool-heading h1 {
+
+                font-size: 34px;
+
+            }
+
+
+            .tool-heading p {
+
+                font-size: 14px;
+
+            }
+
+
+            .upload-box {
+
+                padding: 40px 18px;
+
+            }
+
+
+            .files-area,
+            .results-area {
+
+                padding: 18px;
+
+            }
+
+
+            .quality-options {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .preview-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .preview-image {
+
+                height: 300px;
+
+            }
+
+
+            .merge-btn,
+            .download-all-btn {
+
+                width: 100%;
+
+                margin: 5px 0;
+
+            }
+
+
+            .file-info strong {
+
+                max-width: 145px;
+
+            }
+
+
+            .file-item {
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .tool-heading h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .upload-box h2 {
+
+                font-size: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SAME HEADER
+    ===================================================== -->
+
+    <header class="header">
+
+        <div class="nav-container">
+
+
+            <a href="../home.html" class="logo">
+
+                <img
+                    src="../img/logo.png"
+                    alt="Stacklivo Solution"
+                >
+
+                <span class="logo-text"></span>
+
+            </a>
+
+
+            <nav class="nav-menu">
+
+                <a
+                    href="../home.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+
+                <a
+                    href="../home.html#tools"
+                    class="nav-link active"
+                >
+                    PDF Tools
+                </a>
+
+
+                <a
+                    href="../home.html#how-it-works"
+                    class="nav-link"
+                >
+                    How It Works
+                </a>
+
+
+                <a
+                    href="../home.html#features"
+                    class="nav-link"
+                >
+                    Features
+                </a>
+
+
+                <a
+                    href="../about.html"
+                    class="nav-link"
+                >
+                    About
+                </a>
+
+
+                <a
+                    href="merge.html"
+                    class="get-started"
+                >
+                    Get Started
+                </a>
+
+            </nav>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PDF TO JPG
+    ===================================================== -->
+
+    <main>
+
+        <section class="merge-tool-section">
+
+            <div class="merge-container">
+
+
+                <!-- HEADING -->
+
+                <div class="tool-heading">
+
+                    <span class="tool-badge">
+                        PDF TOOL
+                    </span>
+
+
+                    <h1>
+                        PDF to
+                        <span>JPG</span>
+                    </h1>
+
+
+                    <p>
+                        Convert every page of your PDF
+                        into high-quality JPG images.
+                        Preview and download your images instantly.
+                    </p>
+
+                </div>
+
+
+                <!-- UPLOAD -->
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">
+                        🖼️
+                    </div>
+
+
+                    <h2>
+                        Select PDF File
+                    </h2>
+
+
+                    <p>
+                        Choose a PDF file from your device
+                        to convert its pages into JPG images.
+                    </p>
+
+
+                    <label
+                        for="pdfFile"
+                        class="select-btn"
+                    >
+                        Select PDF File
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="pdfFile"
+                        accept="application/pdf"
+                        hidden
+                    >
+
+
+                    <small>
+                        PDF files only
+                    </small>
+
+                </div>
+
+
+                <!-- FILE AREA -->
+
+                <div
+                    class="files-area"
+                    id="filesArea"
+                >
+
+                    <div class="files-header">
+
+                        <h2>
+                            Selected PDF
+                        </h2>
+
+
+                        <span id="fileInfo">
+                            0 MB
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="file-item"
+                        id="selectedFile"
+                    >
+
+                        <div class="file-info">
+
+                            <div class="pdf-icon">
+                                PDF
+                            </div>
+
+
+                            <div>
+
+                                <strong id="fileName">
+                                    No file selected
+                                </strong>
+
+
+                                <small id="fileSize">
+                                    0 Bytes
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUALITY -->
+
+                    <div class="quality-area">
+
+                        <div class="quality-title">
+                            JPG Quality
+                        </div>
+
+
+                        <div class="quality-options">
+
+
+                            <div class="quality-option">
+
+                                <input
+                                    type="radio"
+                                    id="low"
+                                    name="quality"
+                                    value="1"
+                                >
+
+
+                                <label for="low">
+
+                                    Low
+
+                                    <small>
+                                        Smaller file
+                                    </small>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="quality-option">
+
+                                <input
+                                    type="radio"
+                                    id="medium"
+                                    name="quality"
+                                    value="1.5"
+                                    checked
+                                >
+
+
+                                <label for="medium">
+
+                                    Medium
+
+                                    <small>
+                                        Recommended
+                                    </small>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="quality-option">
+
+                                <input
+                                    type="radio"
+                                    id="high"
+                                    name="quality"
+                                    value="2"
+                                >
+
+
+                                <label for="high">
+
+                                    High
+
+                                    <small>
+                                        Better quality
+                                    </small>
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONVERT BUTTON -->
+
+                <div class="merge-action">
+
+                    <button
+                        type="button"
+                        id="convertBtn"
+                        class="merge-btn"
+                    >
+                        Convert to JPG
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="downloadAllBtn"
+                        class="download-all-btn"
+                        style="display:none;"
+                    >
+                        Download All JPG
+                    </button>
+
+
+                    <div
+                        class="progress-area"
+                        id="progressArea"
+                    >
+
+                        <div class="progress-bar">
+
+                            <div
+                                class="progress-fill"
+                                id="progressFill"
+                            ></div>
+
+                        </div>
+
+
+                        <div
+                            class="progress-text"
+                            id="progressText"
+                        >
+                            Preparing...
+                        </div>
+
+                    </div>
+
+
+                    <p id="statusMessage"></p>
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div
+                    class="results-area"
+                    id="resultsArea"
+                >
+
+                    <div class="results-header">
+
+                        <h2>
+                            Converted Pages
+                        </h2>
+
+
+                        <span id="resultCount">
+                            0 pages
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="preview-grid"
+                        id="previewGrid"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         SAME FOOTER
+    ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <img
+                    src="../img/logo.png"
+                    alt="Stacklivo Solution"
+                >
+
+
+                <p>
+                    Modern software and digital solutions
+                    built for real-world needs.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+
+                <a href="../home.html">
+                    Home
+                </a>
+
+
+                <a href="../home.html#tools">
+                    PDF Tools
+                </a>
+
+
+                <a href="../home.html#features">
+                    Features
+                </a>
+
+
+                <a href="../about.html">
+                    About
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Company
+                </h3>
+
+
+                <a href="../home.html#mission">
+                    Our Mission
+                </a>
+
+
+                <a href="../home.html#how-it-works">
+                    How It Works
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Stacklivo Solution.
+                All rights reserved.
+            </p>
+
+
+            <p>
+                Developed by Fahad Muneer
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         PDF.JS
+    ===================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+
+    <!-- =====================================================
+         JSZIP
+    ===================================================== -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+    <!-- =====================================================
+         MOBILE MENU
+    ===================================================== -->
+
+    <script>
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navMenu =
+            document.querySelector(".nav-menu");
+
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navMenu.classList.toggle("show");
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =====================================================
+         PDF TO JPG JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        /* ==========================================
+           PDF.JS WORKER
+        ========================================== */
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const pdfInput =
+            document.getElementById("pdfFile");
+
+
+        const filesArea =
+            document.getElementById("filesArea");
+
+
+        const fileName =
+            document.getElementById("fileName");
+
+
+        const fileSize =
+            document.getElementById("fileSize");
+
+
+        const fileInfo =
+            document.getElementById("fileInfo");
+
+
+        const convertBtn =
+            document.getElementById("convertBtn");
+
+
+        const statusMessage =
+            document.getElementById("statusMessage");
+
+
+        const resultsArea =
+            document.getElementById("resultsArea");
+
+
+        const previewGrid =
+            document.getElementById("previewGrid");
+
+
+        const resultCount =
+            document.getElementById("resultCount");
+
+
+        const downloadAllBtn =
+            document.getElementById("downloadAllBtn");
+
+
+        const progressArea =
+            document.getElementById("progressArea");
+
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+
+        const progressText =
+            document.getElementById("progressText");
+
+
+        let selectedPDF = null;
+
+        let convertedImages = [];
+
+
+        /* ==========================================
+           SELECT PDF
+        ========================================== */
+
+        pdfInput.addEventListener(
+            "change",
+            function () {
+
+                const file = this.files[0];
+
+
+                if (!file) {
+
+                    return;
+
+                }
+
+
+                if (
+                    file.type !==
+                    "application/pdf"
+                ) {
+
+                    showStatus(
+                        "Please select a valid PDF file.",
+                        "error"
+                    );
+
+                    this.value = "";
+
+                    return;
+
+                }
+
+
+                selectedPDF = file;
+
+
+                fileName.textContent =
+                    file.name;
+
+
+                fileSize.textContent =
+                    formatFileSize(file.size);
+
+
+                fileInfo.textContent =
+                    formatFileSize(file.size);
+
+
+                filesArea.style.display =
+                    "block";
+
+
+                resultsArea.style.display =
+                    "none";
+
+
+                downloadAllBtn.style.display =
+                    "none";
+
+
+                previewGrid.innerHTML =
+                    "";
+
+
+                convertedImages = [];
+
+
+                showStatus(
+                    "PDF selected successfully.",
+                    "success"
+                );
+
+
+                this.value = "";
+
+            }
+        );
+
+
+        /* ==========================================
+           CONVERT PDF TO JPG
+        ========================================== */
+
+        convertBtn.addEventListener(
+            "click",
+            async function () {
+
+
+                if (!selectedPDF) {
+
+                    showStatus(
+                        "Please select a PDF file first.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    convertBtn.disabled =
+                        true;
+
+
+                    convertBtn.textContent =
+                        "Converting...";
+
+
+                    progressArea.style.display =
+                        "block";
+
+
+                    progressFill.style.width =
+                        "0%";
+
+
+                    showStatus(
+                        "Reading your PDF...",
+                        "loading"
+                    );
+
+
+                    const arrayBuffer =
+                        await selectedPDF.arrayBuffer();
+
+
+                    const pdf =
+                        await pdfjsLib
+                            .getDocument({
+                                data: arrayBuffer
+                            })
+                            .promise;
+
+
+                    const totalPages =
+                        pdf.numPages;
+
+
+                    previewGrid.innerHTML =
+                        "";
+
+
+                    convertedImages = [];
+
+
+                    resultsArea.style.display =
+                        "block";
+
+
+                    resultCount.textContent =
+                        totalPages +
+                        (
+                            totalPages === 1
+                                ? " page"
+                                : " pages"
+                        );
+
+
+                    /* ==================================
+                       QUALITY
+                    ================================== */
+
+                    const quality =
+                        parseFloat(
+                            document.querySelector(
+                                'input[name="quality"]:checked'
+                            ).value
+                        );
+
+
+                    /*
+                       1 = low
+                       1.5 = medium
+                       2 = high
+                    */
+
+
+                    /* ==================================
+                       PROCESS EACH PAGE
+                    ================================== */
+
+                    for (
+                        let pageNumber = 1;
+                        pageNumber <= totalPages;
+                        pageNumber++
+                    ) {
+
+
+                        progressText.textContent =
+                            "Converting page " +
+                            pageNumber +
+                            " of " +
+                            totalPages +
+                            "...";
+
+
+                        const page =
+                            await pdf.getPage(
+                                pageNumber
+                            );
+
+
+                        const viewport =
+                            page.getViewport({
+                                scale: quality
+                            });
+
+
+                        const canvas =
+                            document.createElement(
+                                "canvas"
+                            );
+
+
+                        const context =
+                            canvas.getContext(
+                                "2d"
+                            );
+
+
+                        canvas.width =
+                            viewport.width;
+
+
+                        canvas.height =
+                            viewport.height;
+
+
+                        await page.render({
+                            canvasContext:
+                                context,
+                            viewport:
+                                viewport
+                        }).promise;
+
+
+                        const jpgBlob =
+                            await canvasToJPG(
+                                canvas,
+                                0.90
+                            );
+
+
+                        const imageURL =
+                            URL.createObjectURL(
+                                jpgBlob
+                            );
+
+
+                        convertedImages.push({
+                            page:
+                                pageNumber,
+                            blob:
+                                jpgBlob,
+                            url:
+                                imageURL
+                        });
+
+
+                        createPreview(
+                            pageNumber,
+                            jpgBlob,
+                            imageURL
+                        );
+
+
+                        const progress =
+                            (
+                                pageNumber /
+                                totalPages
+                            ) * 100;
+
+
+                        progressFill.style.width =
+                            progress + "%";
+
+
+                    }
+
+
+                    downloadAllBtn.style.display =
+                        "inline-block";
+
+
+                    showStatus(
+                        "PDF converted successfully! All pages are ready.",
+                        "success"
+                    );
+
+
+                    progressText.textContent =
+                        "Conversion completed.";
+
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+
+                    showStatus(
+                        "Unable to convert the PDF. Please try another file.",
+                        "error"
+                    );
+
+                }
+
+
+                convertBtn.disabled =
+                    false;
+
+
+                convertBtn.textContent =
+                    "Convert to JPG";
+
+            }
+        );
+
+
+        /* ==========================================
+           CANVAS TO JPG
+        ========================================== */
+
+        function canvasToJPG(
+            canvas,
+            quality
+        ) {
+
+            return new Promise(
+                function (resolve) {
+
+                    canvas.toBlob(
+                        function (blob) {
+
+                            resolve(blob);
+
+                        },
+                        "image/jpeg",
+                        quality
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           CREATE PREVIEW
+        ========================================== */
+
+        function createPreview(
+            pageNumber,
+            blob,
+            imageURL
+        ) {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "preview-card";
+
+
+            const size =
+                formatFileSize(
+                    blob.size
+                );
+
+
+            card.innerHTML = `
+
+                <div class="preview-image">
+
+                    <img
+                        src="${imageURL}"
+                        alt="Page ${pageNumber}"
+                    >
+
+                </div>
+
+
+                <div class="preview-info">
+
+                    <strong>
+                        Page ${pageNumber}.jpg
+                    </strong>
+
+
+                    <small>
+                        JPG • ${size}
+                    </small>
+
+
+                    <button
+                        type="button"
+                        class="download-single"
+                    >
+                        Download JPG
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const downloadButton =
+                card.querySelector(
+                    ".download-single"
+                );
+
+
+            downloadButton.addEventListener(
+                "click",
+                function () {
+
+                    downloadBlob(
+                        blob,
+                        "Stacklivo-Page-" +
+                        pageNumber +
+                        ".jpg"
+                    );
+
+                }
+            );
+
+
+            previewGrid.appendChild(
+                card
+            );
+
+        }
+
+
+        /* ==========================================
+           DOWNLOAD ALL JPG
+        ========================================== */
+
+        downloadAllBtn.addEventListener(
+            "click",
+            async function () {
+
+
+                if (
+                    convertedImages.length === 0
+                ) {
+
+                    showStatus(
+                        "No converted images available.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    downloadAllBtn.disabled =
+                        true;
+
+
+                    downloadAllBtn.textContent =
+                        "Creating ZIP...";
+
+
+                    showStatus(
+                        "Preparing ZIP file...",
+                        "loading"
+                    );
+
+
+                    const zip =
+                        new JSZip();
+
+
+                    convertedImages.forEach(
+                        function (image) {
+
+                            zip.file(
+                                "Stacklivo-Page-" +
+                                image.page +
+                                ".jpg",
+                                image.blob
+                            );
+
+                        }
+                    );
+
+
+                    const zipBlob =
+                        await zip.generateAsync({
+                            type:
+                                "blob"
+                        });
+
+
+                    downloadBlob(
+                        zipBlob,
+                        "Stacklivo-PDF-to-JPG.zip"
+                    );
+
+
+                    showStatus(
+                        "ZIP downloaded successfully!",
+                        "success"
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(error);
+
+
+                    showStatus(
+                        "Unable to create ZIP file.",
+                        "error"
+                    );
+
+                }
+
+
+                downloadAllBtn.disabled =
+                    false;
+
+
+                downloadAllBtn.textContent =
+                    "Download All JPG";
+
+            }
+        );
+
+
+        /* ==========================================
+           DOWNLOAD BLOB
+        ========================================== */
+
+        function downloadBlob(
+            blob,
+            filename
+        ) {
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                filename;
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            setTimeout(
+                function () {
+
+                    URL.revokeObjectURL(
+                        url
+                    );
+
+                },
+                1000
+            );
+
+        }
+
+
+        /* ==========================================
+           STATUS
+        ========================================== */
+
+        function showStatus(
+            message,
+            type
+        ) {
+
+            statusMessage.textContent =
+                message;
+
+
+            statusMessage.className =
+                type;
+
+        }
+
+
+        /* ==========================================
+           FILE SIZE
+        ========================================== */
+
+        function formatFileSize(
+            bytes
+        ) {
+
+            if (bytes === 0) {
+
+                return "0 Bytes";
+
+            }
+
+
+            const sizes = [
+                "Bytes",
+                "KB",
+                "MB",
+                "GB"
+            ];
+
+
+            const i =
+                Math.floor(
+                    Math.log(bytes) /
+                    Math.log(1024)
+                );
+
+
+            return (
+                parseFloat(
+                    (
+                        bytes /
+                        Math.pow(
+                            1024,
+                            i
+                        )
+                    ).toFixed(2)
+                )
+                +
+                " "
+                +
+                sizes[i]
+            );
+
+        }
+
+    </script>
+
+
+    <!-- Existing JS -->
+
+    <script src="../script2.js"></script>
+
+
+</body>
+
+</html>
+```
